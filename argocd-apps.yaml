@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: game-doom
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/LucasLovizzio/tp2-AARyS-kubernetes.git
+    targetRevision: main
+    path: gamecloud/game-doom
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: game-pacman
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/LucasLovizzio/tp2-AARyS-kubernetes.git
+    targetRevision: main
+    path: gamecloud/game-pacman
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
